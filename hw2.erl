@@ -92,7 +92,8 @@ flatten(L) -> reverse(fltn(L, [])).
 compress(L) -> reverse(remove_dups(L, [])).
 
 
-%% @spec 9. Pack into nested list. [a,a,a,b,c,c] -> [[a,a,a],[b],[c,c]]
+%% @spec 9. Pack into nested list. TODO: Figure it out
+%% [a,a,a,b,c,c] -> [[a,a,a],[b],[c,c]]
 pack(L) -> L.
 
 
