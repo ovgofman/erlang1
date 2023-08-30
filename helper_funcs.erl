@@ -49,7 +49,7 @@ cnt(L, N) ->
   end.
 
 
-%% @spec TODO: doesn't work
+%% @spec TODO: should be used as a helper one for the 'pack' f
 cnt_dups(L, R, E, A) ->
   case L of
 %%    [] -> {A, E};
