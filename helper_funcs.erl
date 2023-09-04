@@ -2,7 +2,7 @@
 %%% @author alex
 %%% @copyright (C) 2023
 %%% @doc
-%%%
+%%% Helper Functions
 %%% @end
 %%% Created : 20. Aug 2023 6:51 PM
 %%%-------------------------------------------------------------------
@@ -27,10 +27,9 @@
   fltn/2,
   cnt_dups/4
 ]).
--import(hw2, [len/1, reverse/1, replicate/2]).
-
-%%% @doc
-%% Helper Functions:
+-import(lesson2_task15, [replicate/2]).
+-import(lesson2_task05, [reverse/1]).
+-import(lesson2_task04, [len/1]).
 
 
 %% @spec [] -> true; [_] -> false
@@ -40,14 +39,12 @@ isEmpty(L) ->
     _ -> false
   end.
 
-
 %% @spec cnt([1,2,3]) -> 3
 cnt(L, N) ->
   case L of
     [_ | T] -> cnt(T, N + 1);
     _ -> N
   end.
-
 
 %% @spec TODO: should be used as a helper one for the 'pack' f
 cnt_dups(L, R, E, A) ->
@@ -58,7 +55,6 @@ cnt_dups(L, R, E, A) ->
     [H | T] when H =/= E -> cnt_dups(T, [{A, E} | R], first(T), 0)
   end.
 
-
 %% @spec Compare lists.
 %% compare([1,2],[1,2]) -> true
 compare(L, R) ->
@@ -67,7 +63,6 @@ compare(L, R) ->
     {[H | T], [H2 | T2]} when H =:= H2 -> compare(T, T2);
     _ -> false
   end.
-
 
 %% @spec Return first N elems.
 %% take([1,2,3],2) -> [1,2]
@@ -83,7 +78,6 @@ loop(L, R, A) ->
             end
   end.
 
-
 %% @spec Reverses order of L.
 %% [1,2] -> [2,1]
 r(L, R) ->
@@ -93,7 +87,6 @@ r(L, R) ->
     [] -> R
   end.
 
-
 %% @spec Creates a list of repeated elems.
 %% f(E, 2) -> [E, E]
 times(E, N) ->
@@ -101,7 +94,6 @@ times(E, N) ->
     N > 1 -> [E | times(E, N - 1)];
     true -> [E]
   end.
-
 
 %% @spec Flattens lists, and returns it in reversed order
 % [a,[],[b,[c,[d]]]] -> [d,c,b,a]
@@ -112,7 +104,6 @@ fltn(L, R) ->
     [H | T] -> fltn(T, [H | R])
   end.
 
-
 %% @spec le2ltec: List of Elems -> List of Tuples {Counter,Elem}
 le2ltec(L, A, E) ->
   case L of
@@ -121,7 +112,6 @@ le2ltec(L, A, E) ->
     [H | T] when H =/= E -> [{A, E}, le2ltec(T, 1, first(H))]
   end.
 
-
 %% @spec le2ltec_mod
 le2ltec_mod(L, A, E) ->
   case L of
@@ -129,7 +119,6 @@ le2ltec_mod(L, A, E) ->
     [H | T] when H =:= E -> le2ltec_mod(T, A + 1, E);
     [H | T] when H =/= E, A =/= 0 -> [{A, E}, le2ltec_mod(T, 1, first(H))]
   end.
-
 
 %% @spec ltec2le_mod
 ltec2le_mod(L, R) ->
@@ -142,7 +131,6 @@ ltec2le_mod(L, R) ->
     [H | T] -> ltec2le_mod(T, [H | R])
   end.
 
-
 %% @spec ltec2le
 ltec2le(L, R) ->
   case L of
@@ -154,7 +142,6 @@ ltec2le(L, R) ->
       end
   end.
 
-
 %% @spec Removes dups from the list, and returns it in the reversed order
 % [1,1,1,2,2] -> [2,1]
 remove_dups(L, R) ->
@@ -164,14 +151,12 @@ remove_dups(L, R) ->
     [H | T] -> remove_dups(T, [H | R])
   end.
 
-
 %% @spec Returns Head of a L if it exists
 first(L) ->
   case L of
     [H | _] -> H;
     _ -> L
   end.
-
 
 %% @spec Compares first 2 elements of the List.
 % [e, e] -> true, [q, w] -> false
