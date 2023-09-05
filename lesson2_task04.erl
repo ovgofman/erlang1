@@ -13,7 +13,12 @@
 -export([
   len/1   % [a,b] -> 2; [] -> 0
 ]).
--import(helper_funcs, [cnt/2]).
 
 %% @spec 4. Counts len of the list
-len(L) -> cnt(L, 0).
+len(L) ->
+  cnt(L, 0).
+cnt(L, N) ->
+  case L of
+    [_ | T] -> cnt(T, N + 1);
+    _ -> N
+  end.
