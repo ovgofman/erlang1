@@ -15,7 +15,15 @@
 ]).
 -import(lesson2_task05, [reverse/1]).
 -import(lesson2_task07, [flatten/1]).
--import(helper_funcs, [ltec2le/2]).
+-import(lesson2_task15, [replicate/2]).
 
 %% @spec 13. [{3,a},{b},{2,c}] -> [a,a,a,b,c,c]
-decode(L) -> reverse(flatten(ltec2le(L, []))).
+decode(L) ->
+  reverse(flatten(ltec2le(L, []))).
+
+ltec2le(L, R) ->
+  case L of
+    [] -> R;
+    [{A, Elem} | T] -> ltec2le(T, [replicate([Elem], A) | R]);
+    [{Elem} | T] -> ltec2le(T, [Elem | R])
+  end.
