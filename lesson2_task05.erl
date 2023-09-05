@@ -13,7 +13,13 @@
 -export([
   reverse/1   % [a,b] -> [b,a]
 ]).
--import(helper_funcs, [r/2]).
 
-%% @spec 5. reverses the list
-reverse(L) -> r(L, []).
+%% @spec 5. Reverses the list
+reverse(L) ->
+  r(L, []).
+r(L, R) ->
+  case L of
+    [H | []] -> [H | R];
+    [H | T] -> r(T, [H | R]);
+    [] -> R
+  end.
